@@ -1,0 +1,39 @@
+# docker-compose.yml
+
+version: '3.9'
+
+services:
+  onlyoffice-server:
+    image: onlyoffice/documentserver:latest
+    container_name: onlyoffice_server
+    restart: unless-stopped
+    ports:
+      - "8888:80"
+    environment:
+      JWT_SECRET: "meu_segredo_super_secreto_e_longo"
+    volumes:
+      - onlyoffice_data:/var/www/onlyoffice/Data
+      - onlyoffice_logs:/var/log/onlyoffice
+    networks:
+      - onlyoffice_network
+
+  meu-app-php:
+    image: php:8.2-apache
+    container_name: meu_app_php
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - onlyoffice-server
+    networks:
+      - onlyoffice_network
+      
+volumes:
+  onlyoffice_data:
+  onlyoffice_logs:
+
+networks:
+  onlyoffice_network:
+    driver: bridge
