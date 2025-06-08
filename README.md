@@ -43,6 +43,7 @@ Após a instalação, a aplicação estará pronta para uso.
 1.  Acesse a aplicação PHP no seu navegador: <a href="http://localhost:8000/" target='_blank' title="Acessar Aplicação de Teste">localhost:8000</a>
 2.  Clique no nome do arquivo (`teste.docx`) na lista.
 3.  Aguarde o carregamento do editor do ONLYOFFICE, que aparecerá na mesma página. Agora você pode editar e salvar o documento.
+4.  Um erro bem comun na hora de salvar o arquivo,é o diretório não ter permissão. Caso aconteça, verifique os log do container.
 
 # Arquitetura e Fluxo de Trabalho
 
